@@ -20,16 +20,25 @@ class MainWindow:
         text = font.render(self.letter, True, (255, 255, 255))
         text_rect = text.get_rect()
 
+        correct = False
+
         while True:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     sys.exit()
                 if event.type == pygame.KEYDOWN:
                     if pygame.K_a <= event.key <= pygame.K_z:
-                        text = font.render(self.letter, True, (255, 0, 0))
+                        if event.key == ord(self.letter.lower()):
+                            correct = True
+                            text = font.render(self.letter, True, (0, 255, 0))
+                        else:
+                            correct = False
+                            text = font.render(self.letter, True, (255, 0, 0))
                 if event.type == pygame.KEYUP:
-                    self.letter = random.choice(string.ascii_uppercase)
-                    text = font.render(self.letter, True, (255, 255, 255))
+                    if correct:
+                        self.letter = random.choice(string.ascii_uppercase)
+                        text = font.render(self.letter, True, (255, 255, 255))
+                        correct = False
 
             self.clock.tick(50)
 
