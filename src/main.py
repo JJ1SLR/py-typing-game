@@ -12,11 +12,11 @@ class MainWindow:
         self.height = height
         self.screen = pygame.display.set_mode((self.width, self.height))
         self.clock = pygame.time.Clock()
-        self.speed = [3, 1]
+        # self.speed = [3, 1]
         self.letter = random.choice(string.ascii_uppercase)
 
     def main_loop(self):
-        font = pygame.font.Font(None, 55)
+        font = pygame.font.Font(None, 200)
         text = font.render(self.letter, True, (255, 255, 255))
         text_rect = text.get_rect()
 
@@ -42,14 +42,14 @@ class MainWindow:
 
             self.clock.tick(50)
 
-            text_rect = text_rect.move(self.speed)
-            if text_rect.left < 0 or text_rect.right > self.width:
-                self.speed[0] = -self.speed[0]
-            if text_rect.top < 0 or text_rect.bottom > self.height:
-                self.speed[1] = -self.speed[1]
+            # text_rect = text_rect.move(self.speed)
+            # if text_rect.left < 0 or text_rect.right > self.width:
+            #     self.speed[0] = -self.speed[0]
+            # if text_rect.top < 0 or text_rect.bottom > self.height:
+            #     self.speed[1] = -self.speed[1]
 
             self.screen.fill((0, 0, 0))
-            self.screen.blit(text, text_rect)
+            self.screen.blit(text, [(self.width - text_rect.width) / 2, (self.height - text_rect.height) / 2])
             pygame.display.flip()
 
 
