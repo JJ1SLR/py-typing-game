@@ -14,7 +14,6 @@ class MainWindow:
         self.clock = pygame.time.Clock()
         self.speed = [3, 1]
         self.letter = random.choice(string.ascii_uppercase)
-        self.letter_change_counter = 0
 
     def main_loop(self):
         font = pygame.font.Font(None, 55)
@@ -25,6 +24,12 @@ class MainWindow:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     sys.exit()
+                if event.type == pygame.KEYDOWN:
+                    if pygame.K_a <= event.key <= pygame.K_z:
+                        text = font.render(self.letter, True, (255, 0, 0))
+                if event.type == pygame.KEYUP:
+                    self.letter = random.choice(string.ascii_uppercase)
+                    text = font.render(self.letter, True, (255, 255, 255))
 
             self.clock.tick(50)
 
@@ -33,12 +38,6 @@ class MainWindow:
                 self.speed[0] = -self.speed[0]
             if text_rect.top < 0 or text_rect.bottom > self.height:
                 self.speed[1] = -self.speed[1]
-
-            self.letter_change_counter += 1
-            if self.letter_change_counter % 30 == 0:
-                self.letter = random.choice(string.ascii_uppercase)
-                text = font.render(self.letter, True, (255, 255, 255))
-                self.letter_change_counter = 0
 
             self.screen.fill((0, 0, 0))
             self.screen.blit(text, text_rect)
