@@ -2,39 +2,50 @@ import sys
 import string
 import random
 
-import pygame
+import pygame as pg
+import score
 
 
 class MainWindow:
     def __init__(self, width=640, height=480):
-        pygame.init()
+        pg.init()
         self.width = width
         self.height = height
-        self.screen = pygame.display.set_mode((self.width, self.height))
-        self.clock = pygame.time.Clock()
+        self.screen = pg.display.set_mode((self.width, self.height))
+        self.clock = pg.time.Clock()
         # self.speed = [3, 1]
         self.letter = random.choice(string.ascii_uppercase)
+        self.scoreOK = score.Score(5, 5, 200, 30, "OK:")
+        self.scoreNG = score.Score(5, 35, 200, 30, "NG:")
+        self.scoreTotal = score.Score(5, 65, 200, 30, "Total:")
+        self.scoreCombo = score.Score(5, height - 60 - 5, 200, 60, "COMBO:")
 
     def main_loop(self):
-        font = pygame.font.Font(None, 200)
+        font = pg.font.Font(None, 200)
         text = font.render(self.letter, True, (255, 255, 255))
         text_rect = text.get_rect()
 
         correct = False
 
         while True:
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
+            for event in pg.event.get():
+                if event.type == pg.QUIT:
                     sys.exit()
-                if event.type == pygame.KEYDOWN:
-                    if pygame.K_a <= event.key <= pygame.K_z:
+                if event.type == pg.KEYDOWN:
+                    if pg.K_a <= event.key <= pg.K_z:
                         if event.key == ord(self.letter.lower()):
                             correct = True
                             text = font.render(self.letter, True, (0, 255, 0))
+                            self.scoreOK.add()
+                            self.scoreTotal.add()
+                            self.scoreCombo.add()
                         else:
                             correct = False
                             text = font.render(self.letter, True, (255, 0, 0))
-                if event.type == pygame.KEYUP:
+                            self.scoreNG.add()
+                            self.scoreTotal.add()
+                            self.scoreCombo.reset()
+                if event.type == pg.KEYUP:
                     if correct:
                         self.letter = random.choice(string.ascii_uppercase)
                         text = font.render(self.letter, True, (255, 255, 255))
@@ -47,10 +58,13 @@ class MainWindow:
             #     self.speed[0] = -self.speed[0]
             # if text_rect.top < 0 or text_rect.bottom > self.height:
             #     self.speed[1] = -self.speed[1]
-
             self.screen.fill((0, 0, 0))
             self.screen.blit(text, [(self.width - text_rect.width) / 2, (self.height - text_rect.height) / 2])
-            pygame.display.flip()
+            self.scoreOK.draw(self.screen)
+            self.scoreNG.draw(self.screen)
+            self.scoreTotal.draw(self.screen)
+            self.scoreCombo.draw(self.screen)
+            pg.display.flip()
 
 
 def main():
