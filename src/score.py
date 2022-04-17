@@ -26,7 +26,4 @@ class Score:
         self.update()
 
     def draw(self, screen):
-        # Blit the text.
         screen.blit(self.txt_surface, (self.rect.x + 5, self.rect.y + 5))
-        # Blit the rect.
-        # pg.draw.rect(screen, self.color, self.rect, 2)
