@@ -21,6 +21,7 @@ class MainWindow:
         self.scoreCombo = score.Score(5, height - 60 - 5, 200, 60, "COMBO:")
         self.clickSnd = pg.mixer.Sound("../sound/click.wav")
         self.errorSnd = pg.mixer.Sound("../sound/error.wav")
+        self.comboSnd = pg.mixer.Sound("../sound/combo.wav")
 
     def main_loop(self):
 
@@ -38,6 +39,8 @@ class MainWindow:
                             self.scoreTotal.add()
                             self.scoreCombo.add()
                             self.clickSnd.play()
+                            if self.scoreCombo.num > 1 and self.scoreCombo.num % 10 == 0:
+                                self.comboSnd.play()
                         else:
                             correct = False
                             self.scoreNG.add()
