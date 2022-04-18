@@ -14,13 +14,13 @@ class MainWindow:
         self.screen = pg.display.set_mode((self.width, self.height))
         pg.display.set_caption("Typing Game")
         self.clock = pg.time.Clock()
-        # self.speed = [3, 1]
-        # self.letter = random.choice(string.ascii_uppercase)
         self.letter = letter.Letter(self.width, self.height)
         self.scoreOK = score.Score(5, 5, 200, 30, "OK:")
         self.scoreNG = score.Score(5, 35, 200, 30, "NG:")
         self.scoreTotal = score.Score(5, 65, 200, 30, "Total:")
         self.scoreCombo = score.Score(5, height - 60 - 5, 200, 60, "COMBO:")
+        self.clickSnd = pg.mixer.Sound("../sound/click.wav")
+        self.errorSnd = pg.mixer.Sound("../sound/error.wav")
 
     def main_loop(self):
 
@@ -37,14 +37,16 @@ class MainWindow:
                             self.scoreOK.add()
                             self.scoreTotal.add()
                             self.scoreCombo.add()
+                            self.clickSnd.play()
                         else:
                             correct = False
                             self.scoreNG.add()
                             self.scoreTotal.add()
                             self.scoreCombo.reset()
+                            self.errorSnd.play()
                 if event.type == pg.KEYUP:
                     if correct:
-                        self.letter.update()
+                        self.letter.next()
                         correct = False
 
             self.clock.tick(50)

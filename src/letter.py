@@ -4,7 +4,6 @@ import string
 import pygame as pg
 
 
-
 class Letter:
 
     def __init__(self, x, y):
@@ -29,7 +28,7 @@ class Letter:
     def _set_ng(self):
         self.txt_surface = self.font.render(self.letter, True, (255, 0, 0))
 
-    def update(self):
+    def next(self):
         self.letter = random.choice(string.ascii_uppercase)
         self.txt_surface = self.font.render(self.letter, True, (255, 255, 255))
 
