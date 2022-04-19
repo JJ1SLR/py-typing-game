@@ -3,10 +3,13 @@ import string
 
 import pygame as pg
 
+from widget import Widget
 
-class Letter:
+
+class Letter(Widget):
 
     def __init__(self, x, y):
+        super().__init__()
         self.letter = random.choice(string.ascii_uppercase)
         self.color = (255, 255, 255)
         self.font = pg.font.Font(None, 200)

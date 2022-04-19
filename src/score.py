@@ -1,9 +1,12 @@
 import pygame as pg
 
+from widget import Widget
 
-class Score:
+
+class Score(Widget):
 
     def __init__(self, x, y, w, h, text='', num=0):
+        super().__init__()
         self.rect = pg.Rect(x, y, w, h)
         self.color = (255, 255, 255)
         self.text = text

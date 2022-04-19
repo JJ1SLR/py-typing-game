@@ -1,20 +1,20 @@
-from abc import ABC, abstractmethod
-
-
-class Scene(ABC):
+class Scene():
 
     def __init__(self, screen):
         super().__init__()
         self.screen = screen
+        self.widget_list = []
 
-    @abstractmethod
+    def add_widget(self, widget):
+        self.widget_list.append(widget)
+
     def on_key_down(self, event):
         pass
 
-    @abstractmethod
     def on_key_up(self, event):
         pass
 
-    @abstractmethod
     def on_draw(self):
-        pass
+        self.screen.fill((0, 0, 0))
+        for widget in self.widget_list:
+            widget.draw(self.screen)

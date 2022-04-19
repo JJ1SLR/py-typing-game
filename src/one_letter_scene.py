@@ -11,10 +11,15 @@ class OneLetterScene(Scene):
     def __init__(self, screen):
         super().__init__(screen)
         self.letter = letter.Letter(self.screen.get_width(), self.screen.get_height())
+        self.add_widget(self.letter)
         self.scoreOK = score.Score(5, 5, 200, 30, "OK:")
+        self.add_widget(self.scoreOK)
         self.scoreNG = score.Score(5, 35, 200, 30, "NG:")
+        self.add_widget(self.scoreNG)
         self.scoreTotal = score.Score(5, 65, 200, 30, "Total:")
+        self.add_widget(self.scoreTotal)
         self.scoreCombo = score.Score(5, screen.get_height() - 60 - 5, 200, 60, "COMBO:")
+        self.add_widget(self.scoreCombo)
         self.clickSnd = pg.mixer.Sound("../sound/click.wav")
         self.errorSnd = pg.mixer.Sound("../sound/error.wav")
         self.comboSnd = pg.mixer.Sound("../sound/combo.wav")
@@ -41,11 +46,3 @@ class OneLetterScene(Scene):
         if self.correct:
             self.letter.next()
             self.correct = False
-
-    def on_draw(self):
-        self.screen.fill((0, 0, 0))
-        self.letter.draw(self.screen)
-        self.scoreOK.draw(self.screen)
-        self.scoreNG.draw(self.screen)
-        self.scoreTotal.draw(self.screen)
-        self.scoreCombo.draw(self.screen)
