@@ -4,6 +4,8 @@ import pygame as pg
 
 from one_letter_scene import OneLetterScene
 
+ONE_LETTER_SCENE = 1
+
 
 class MainWindow:
 
@@ -12,7 +14,7 @@ class MainWindow:
         self.screen = pg.display.set_mode((width, height))
         pg.display.set_caption("Typing Game")
         self.clock = pg.time.Clock()
-        self.scene = OneLetterScene(self.screen)
+        self.scene = MainWindow.get_scene(self.screen, ONE_LETTER_SCENE)
 
     def main_loop(self):
         while True:
@@ -27,6 +29,11 @@ class MainWindow:
             self.clock.tick(50)
             self.scene.on_draw()
             pg.display.flip()
+
+    @staticmethod
+    def get_scene(screen, scene_type):
+        if scene_type == ONE_LETTER_SCENE:
+            return OneLetterScene(screen)
 
 
 def main():
