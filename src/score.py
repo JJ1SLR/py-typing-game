@@ -5,7 +5,7 @@ from widget import Widget
 
 class Score(Widget):
 
-    def __init__(self, x, y, size, text='', num=0):
+    def __init__(self, x: int, y: int, size: int, text: str = '', num: int = 0):
         super().__init__(x, y)
         self.color = (255, 255, 255)
         self.text = text
@@ -24,5 +24,5 @@ class Score(Widget):
         self.num = 0
         self.update()
 
-    def draw(self, screen):
+    def draw(self, screen: pg.surface):
         screen.blit(self.txt_surface, [self.x + 5, self.y + 5])

@@ -9,12 +9,12 @@ ONE_LETTER_SCENE = 1
 
 class MainWindow:
 
-    def __init__(self, width=640, height=480):
+    def __init__(self, width: int = 640, height: int = 480):
         pg.init()
         self.screen = pg.display.set_mode((width, height))
         pg.display.set_caption("Typing Game")
         self.clock = pg.time.Clock()
-        self.scene = MainWindow.get_scene(self.screen, ONE_LETTER_SCENE)
+        self.scene = self.get_scene(ONE_LETTER_SCENE)
 
     def main_loop(self):
         while True:
@@ -30,10 +30,9 @@ class MainWindow:
             self.scene.on_draw()
             pg.display.flip()
 
-    @staticmethod
-    def get_scene(screen, scene_type):
+    def get_scene(self, scene_type: int):
         if scene_type == ONE_LETTER_SCENE:
-            return OneLetterScene(screen)
+            return OneLetterScene(self)
 
 
 def main():

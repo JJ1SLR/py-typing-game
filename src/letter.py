@@ -8,7 +8,7 @@ from widget import Widget
 
 class Letter(Widget):
 
-    def __init__(self, x, y, size=200, letter=''):
+    def __init__(self, x: int, y: int, size:int = 200, letter: str = ''):
         super().__init__(x, y)
         if letter:
             self.letter = letter
@@ -20,7 +20,7 @@ class Letter(Widget):
         self.text_rect = self.txt_surface.get_rect()
         self.real_x, self.real_y = (x - self.text_rect.width) / 2, (y - self.text_rect.height) / 2
 
-    def judge(self, event_key):
+    def judge(self, event_key: int):
         if event_key == ord(self.letter.lower()):
             self._set_ok()
             return True
@@ -38,7 +38,7 @@ class Letter(Widget):
         self.letter = random.choice(string.ascii_uppercase)
         self.txt_surface = self.font.render(self.letter, True, (255, 255, 255))
 
-    def draw(self, screen):
+    def draw(self, screen: pg.surface):
         self.text_rect = self.txt_surface.get_rect()
         self.real_x, self.real_y = (self.x - self.text_rect.width) / 2, (self.y - self.text_rect.height) / 2
         screen.blit(self.txt_surface, [self.real_x, self.real_y])
