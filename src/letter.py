@@ -13,7 +13,8 @@ from widget import Widget
 
 class Letter(Widget):
 
-    def __init__(self, x: int = 0, y: int = 0, parent: Widget = None, scene: Scene = None, size:int = 200, letter: str = ''):
+    def __init__(self, x: int = 0, y: int = 0, parent: Widget = None, scene: Scene = None,
+                 size:int = 200, letter: str = ''):
         super().__init__(x, y, parent, scene)
         if letter:
             self.letter = letter
