@@ -23,7 +23,6 @@ class Letter(Widget):
         self.color = (255, 255, 255)
         self.font = pg.font.Font(None, size)
         self.txt_surface = self.font.render(self.letter, True, (255, 255, 255))
-        self.real_x, self.real_y = self.x, self.y
 
     def judge(self, event_key: int) -> bool:
         if event_key == ord(self.letter.lower()):
@@ -45,8 +44,8 @@ class Letter(Widget):
 
     def set_scene_center(self):
         text_rect = self.txt_surface.get_rect()
-        self.real_x = (self.scene.get_width() - text_rect.width) / 2
-        self.real_y = (self.scene.get_height() - text_rect.height) / 2
+        self.x = (self.scene.get_width() - text_rect.width) / 2
+        self.y = (self.scene.get_height() - text_rect.height) / 2
 
     def get_width(self) -> int:
         return self.txt_surface.get_rect().width
@@ -55,4 +54,4 @@ class Letter(Widget):
         return self.txt_surface.get_rect().height
 
     def draw(self, screen: pg.surface):
-        screen.blit(self.txt_surface, [self.real_x, self.real_y])
+        screen.blit(self.txt_surface, [self.x, self.y])
