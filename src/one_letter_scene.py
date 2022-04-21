@@ -18,15 +18,15 @@ class OneLetterScene(Scene):
 
     def __init__(self, window: MainWindow):
         super().__init__(window)
-        self.letter = letter.Letter(self.window.screen.get_width(), self.window.screen.get_height())
-        self.add_widget(self.letter)
-        self.scoreOK = score.Score(5, 5, 30, "OK:")
+        self.letter = letter.Letter(0, 0, scene=self)
+        self.letter.set_scene_center()
+        self.scoreOK = score.Score(5, 5, scene=self, text="OK:")
         self.add_widget(self.scoreOK)
-        self.scoreNG = score.Score(5, 35, 30, "NG:")
+        self.scoreNG = score.Score(5, 35, scene=self, text="NG:")
         self.add_widget(self.scoreNG)
-        self.scoreTotal = score.Score(5, 65, 30, "Total:")
+        self.scoreTotal = score.Score(5, 65, scene=self, text="Total:")
         self.add_widget(self.scoreTotal)
-        self.scoreCombo = score.Score(5, window.screen.get_height() - 60 - 5, 60, "COMBO:")
+        self.scoreCombo = score.Score(5, window.screen.get_height() - 60 - 5, scene=self, size=60, text="COMBO:")
         self.add_widget(self.scoreCombo)
         self.clickSnd = pg.mixer.Sound("../sound/click.wav")
         self.errorSnd = pg.mixer.Sound("../sound/error.wav")
@@ -53,4 +53,6 @@ class OneLetterScene(Scene):
     def on_key_up(self, event: pg.event.Event):
         if self.correct:
             self.letter.next()
+            self.letter.set_scene_center()
             self.correct = False
+

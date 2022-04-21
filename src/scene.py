@@ -13,6 +13,12 @@ class Scene:
         self.window = window
         self.widget_list = []
 
+    def get_width(self) -> int:
+        return self.window.screen.get_width()
+
+    def get_height(self) -> int:
+        return self.window.screen.get_height()
+
     def add_widget(self, widget: Widget):
         self.widget_list.append(widget)
 
