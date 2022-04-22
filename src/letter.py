@@ -38,14 +38,12 @@ class Letter(Widget):
     def _set_ng(self):
         self.txt_surface = self.font.render(self.letter, True, (255, 0, 0))
 
+    def reset(self):
+        self.txt_surface = self.font.render(self.letter, True, (255, 255, 255))
+
     def next(self):
         self.letter = random.choice(string.ascii_uppercase)
         self.txt_surface = self.font.render(self.letter, True, (255, 255, 255))
-
-    def set_scene_center(self):
-        text_rect = self.txt_surface.get_rect()
-        self.x = (self.scene.get_width() - text_rect.width) / 2
-        self.y = (self.scene.get_height() - text_rect.height) / 2
 
     def get_width(self) -> int:
         return self.txt_surface.get_rect().width

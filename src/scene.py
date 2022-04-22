@@ -22,6 +22,11 @@ class Scene:
     def add_widget(self, widget: Widget):
         self.widget_list.append(widget)
 
+    def remove_widget(self, widget: Widget):
+        for sub_widget in widget.sub_widget_list:
+            self.remove_widget(sub_widget)
+        self.widget_list.remove(widget)
+
     def on_key_down(self, event: pg.event.Event):
         pass
 

@@ -17,7 +17,28 @@ class RandomLine(Widget):
         self.x, self.y = x, y
         self.size = size
         self.count = count
+        self.current = 0
         self.line = [Letter(x + i * (size + 2), y, self, scene, size) for i in range(count)]
+
+    def judge(self, event_key: int) -> bool:
+        b_retval = self.line[self.current].judge(event_key)
+        if b_retval:
+            self.current += 1
+        return b_retval
+
+    def is_complete(self) -> bool:
+        return self.current >= self.count
+
+    def reset(self):
+        for letter in self.line:
+            letter.reset()
+
+    def set_scene_center(self):
+        self.x = (self.scene.get_width() - self.get_width()) / 2
+        self.y = (self.scene.get_height() - self.get_height()) / 2
+        for i in range(self.count):
+            self.line[i].x = self.x + i * (self.size + 2)
+            self.line[i].y = self.y
 
     def get_width(self) -> int:
         return (self.size + 2) * self.count - 2
@@ -26,4 +47,5 @@ class RandomLine(Widget):
         return self.size
 
     def draw(self, screen: pg.surface):
-        raise NotImplementedError()
+        for letter in self.line:
+            letter.draw(screen)
