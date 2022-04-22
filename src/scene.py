@@ -35,5 +35,6 @@ class Scene:
 
     def on_draw(self):
         self.window.screen.fill((0, 0, 0))
+        self.window.screen.blit(self.window.picture, self.window.picture.get_rect())
         for widget in self.widget_list:
             widget.draw(self.window.screen)

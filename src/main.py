@@ -17,6 +17,8 @@ class MainWindow:
         pg.display.set_caption("Typing Game")
         self.clock = pg.time.Clock()
         self.scene = self.get_scene(scene_type)
+        picture = pg.image.load("../image/20220422235656.jpg")
+        self.picture = pg.transform.scale(picture, (640, 480))
 
     def main_loop(self):
         while True:
