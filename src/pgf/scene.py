@@ -2,14 +2,14 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     import pygame as pg
-    from src.main import MainWindow
+    from src.pgf.window import Window
 
 from src.pgf.root_widget import RootWidget
 
 
 class Scene:
 
-    def __init__(self, window: MainWindow):
+    def __init__(self, window: Window):
         super().__init__()
         self.window = window
         self.root_widget = RootWidget(self)
@@ -28,5 +28,6 @@ class Scene:
 
     def on_draw(self):
         self.window.screen.fill((0, 0, 0))
-        self.window.screen.blit(self.window.picture, self.window.picture.get_rect())
+        if self.window.picture:
+            self.window.screen.blit(self.window.picture, self.window.picture.get_rect())
         self.root_widget.draw(self.window.screen)

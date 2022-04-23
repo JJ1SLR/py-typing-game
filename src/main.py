@@ -14,9 +14,9 @@ class MainWindow(Window):
 
     def __init__(self, width: int = 640, height: int = 480, scene_type: int = ONE_LETTER_SCENE):
         super().__init__(width, height, "Typing Game")
-        self.set_scene(self.get_scene(scene_type))
         picture = pg.image.load("../image/20220422235656.jpg")
-        self.picture = pg.transform.scale(picture, (width, height))
+        self.set_picture(pg.transform.scale(picture, (width, height)))
+        self.set_scene(self.get_scene(scene_type))
 
     def get_scene(self, scene_type: int):
         if scene_type == ONE_LETTER_SCENE:

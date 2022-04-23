@@ -15,9 +15,13 @@ class Window:
             pg.display.set_caption(caption)
         self.fps = fps
         self.scene = None
+        self.picture = None
 
     def set_scene(self, scene: Scene):
         self.scene = scene
+
+    def set_picture(self, picture: pg.Surface):
+        self.picture = picture
 
     def main_loop(self):
         while True:
