@@ -1,8 +1,3 @@
-from __future__ import annotations
-from typing import TYPE_CHECKING
-if TYPE_CHECKING:
-    from src.pgf.scene import Scene
-
 from src.pgf.widget import Widget
 from src.pgf.score import Score
 

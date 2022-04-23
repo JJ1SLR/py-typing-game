@@ -1,5 +1,3 @@
-import sys
-
 import pygame as pg
 
 from src.pgf.window import Window
