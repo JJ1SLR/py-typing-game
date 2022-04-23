@@ -9,16 +9,29 @@ from src.pgf.score import Score
 
 class ScoreBoard(Widget):
 
-    def __init__(self, x: int = 0, y: int = 0, parent: Widget = None, scene: Scene = None):
-        super().__init__(x, y, parent, scene)
-        self.scoreOK = Score(5, 5, parent=self, scene=scene, text="OK:")
-        self.scoreNG = Score(5, 35, sparent=self, cene=scene, text="NG:")
-        self.scoreTotal = Score(5, 65, parent=self, scene=scene, text="Total:")
-        self.maxCombo = Score(5, 95, parent=self, scene=scene, text="Max Combo:")
-        combo_y = 125
-        if scene:
-            combo_y = scene.get_height() - 65
-        self.scoreCombo = Score(5, combo_y, parent=self, scene=scene, size=60, text="COMBO:")
+    def __init__(self, x: int = 0, y: int = 0, parent: Widget = None):
+        super().__init__(x, y, parent)
+        self.scoreOK = Score(5, 5, parent=self, text="OK:")
+        self.scoreNG = Score(5, 35, parent=self, text="NG:")
+        self.scoreTotal = Score(5, 65, parent=self, text="Total:")
+        self.maxCombo = Score(5, 95, parent=self, text="Max Combo:")
+        combo_y = self.scene.get_height() - 65
+        self.scoreCombo = Score(5, combo_y, parent=self, size=60, text="COMBO:")
+
+    def add_ok(self):
+        self.scoreOK.add()
+        self.scoreTotal.add()
+        self.scoreCombo.add()
+        if self.scoreCombo.num > self.maxCombo.num:
+            self.maxCombo.add()
+
+    def add_ng(self):
+        self.scoreNG.add()
+        self.scoreTotal.add()
+        self.scoreCombo.reset()
+
+    def get_combo(self) -> int:
+        return self.scoreCombo.num
 
     def get_width(self) -> int:
         if self.scene:

@@ -6,8 +6,8 @@ if TYPE_CHECKING:
 import pygame as pg
 
 from src.pgf.letter import Letter
-from src.pgf.score import Score
 from src.pgf.scene import Scene
+from score_board import ScoreBoard
 
 
 class OneLetterScene(Scene):
@@ -16,11 +16,7 @@ class OneLetterScene(Scene):
         super().__init__(window)
         self.letter = Letter(0, 0, parent=self.root_widget)
         self.letter.set_center()
-        self.scoreOK = Score(5, 5, parent=self.root_widget, text="OK:")
-        self.scoreNG = Score(5, 35, parent=self.root_widget, text="NG:")
-        self.scoreTotal = Score(5, 65, parent=self.root_widget, text="Total:")
-        self.scoreCombo = Score(5, window.screen.get_height() - 60 - 5, parent=self.root_widget, size=60,
-                                text="COMBO:")
+        self.scoreBoard = ScoreBoard(0, 0, parent=self.root_widget)
         self.clickSnd = pg.mixer.Sound("../sound/click.wav")
         self.errorSnd = pg.mixer.Sound("../sound/error.wav")
         self.comboSnd = pg.mixer.Sound("../sound/combo.wav")
@@ -30,17 +26,13 @@ class OneLetterScene(Scene):
         if pg.K_a <= event.key <= pg.K_z:
             if self.letter.judge(event.key):
                 self.correct = True
-                self.scoreOK.add()
-                self.scoreTotal.add()
-                self.scoreCombo.add()
+                self.scoreBoard.add_ok()
                 self.clickSnd.play()
-                if self.scoreCombo.num > 1 and self.scoreCombo.num % 10 == 0:
+                if self.scoreBoard.get_combo() > 1 and self.scoreBoard.get_combo() % 10 == 0:
                     self.comboSnd.play()
             else:
                 self.correct = False
-                self.scoreNG.add()
-                self.scoreTotal.add()
-                self.scoreCombo.reset()
+                self.scoreBoard.add_ng()
                 self.errorSnd.play()
 
     def on_key_up(self, event: pg.event.Event):

@@ -10,9 +10,8 @@ from src.pgf.widget import Widget
 
 class Score(Widget):
 
-    def __init__(self, x: int = 0, y: int = 0, parent: Widget = None, scene: Scene = None,
-                 size: int = 30, text: str = '', num: int = 0):
-        super().__init__(x, y, parent, scene)
+    def __init__(self, x: int = 0, y: int = 0, parent: Widget = None, size: int = 30, text: str = '', num: int = 0):
+        super().__init__(x, y, parent)
         self.color = (255, 255, 255)
         self.text = text
         self.num = num

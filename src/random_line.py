@@ -9,14 +9,13 @@ from src.pgf.letter import Letter
 
 class RandomLine(Widget):
 
-    def __init__(self, x: int = 0, y: int = 0, parent: Widget = None, scene: Scene = None,
-                 size: int = 50, count: int = 10):
-        super().__init__(x, y, parent, scene)
+    def __init__(self, x: int = 0, y: int = 0, parent: Widget = None, size: int = 50, count: int = 10):
+        super().__init__(x, y, parent)
         self.x, self.y = x, y
         self.size = size
         self.count = count
         self.current = 0
-        [Letter(x + i * (size + 2), y, self, scene, size) for i in range(count)]
+        [Letter(x + i * (size + 2), y, self, size) for i in range(count)]
 
     def judge(self, event_key: int) -> bool:
         b_retval = self.sub_widget_list[self.current].judge(event_key)
