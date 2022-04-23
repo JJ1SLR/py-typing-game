@@ -1,14 +1,14 @@
 from __future__ import annotations
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from scene import Scene
+    from src.pgf.scene import Scene
 
 import random
 import string
 
 import pygame as pg
 
-from widget import Widget
+from src.pgf.widget import Widget
 
 
 class Letter(Widget):

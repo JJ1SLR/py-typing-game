@@ -2,10 +2,9 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     import pygame as pg
-    from main import MainWindow
-    from widget import Widget
+    from src.main import MainWindow
 
-from root_widget import RootWidget
+from src.pgf.root_widget import RootWidget
 
 
 class Scene:
