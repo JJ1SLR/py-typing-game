@@ -4,7 +4,7 @@ from src.pgf.letter import Letter
 
 class RandomLine(Widget):
 
-    def __init__(self, x: int = 0, y: int = 0, parent: Widget = None, size: int = 70, count: int = 10):
+    def __init__(self, x: int = 0, y: int = 0, parent: Widget = None, size: int = 90, count: int = 10):
         super().__init__(x, y, parent)
         self.x, self.y = x, y
         self.size = size
