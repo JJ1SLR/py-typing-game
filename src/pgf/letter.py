@@ -16,7 +16,7 @@ class Letter(Widget):
             self.letter = random.choice(string.ascii_uppercase)
         self.color = (255, 255, 255)
         self.font = pg.font.Font(None, size)
-        self.txt_surface = self.font.render(self.letter, True, (255, 255, 255))
+        self.txt_surface = self.font.render(self.letter, True, self.color)
 
     def judge(self, event_key: int) -> bool:
         if event_key == ord(self.letter.lower()):
@@ -27,17 +27,21 @@ class Letter(Widget):
             return False
 
     def _set_ok(self):
-        self.txt_surface = self.font.render(self.letter, True, (0, 255, 0))
+        self.color = (0, 255, 0)
+        self.txt_surface = self.font.render(self.letter, True, self.color)
 
     def _set_ng(self):
-        self.txt_surface = self.font.render(self.letter, True, (255, 0, 0))
+        self.color = (255, 0, 0)
+        self.txt_surface = self.font.render(self.letter, True, self.color)
 
     def reset(self):
-        self.txt_surface = self.font.render(self.letter, True, (255, 255, 255))
+        self.color = (255, 255, 255)
+        self.txt_surface = self.font.render(self.letter, True, self.color)
 
     def next(self):
         self.letter = random.choice(string.ascii_uppercase)
-        self.txt_surface = self.font.render(self.letter, True, (255, 255, 255))
+        self.color = (255, 255, 255)
+        self.txt_surface = self.font.render(self.letter, True, self.color)
 
     def get_width(self) -> int:
         return self.txt_surface.get_rect().width
