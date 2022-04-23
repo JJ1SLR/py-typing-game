@@ -18,10 +18,10 @@ class RandomLine(Widget):
         self.size = size
         self.count = count
         self.current = 0
-        self.line = [Letter(x + i * (size + 2), y, self, scene, size) for i in range(count)]
+        [Letter(x + i * (size + 2), y, self, scene, size) for i in range(count)]
 
     def judge(self, event_key: int) -> bool:
-        b_retval = self.line[self.current].judge(event_key)
+        b_retval = self.sub_widget_list[self.current].judge(event_key)
         if b_retval:
             self.current += 1
         return b_retval
@@ -30,22 +30,18 @@ class RandomLine(Widget):
         return self.current >= self.count
 
     def reset(self):
-        for letter in self.line:
+        for letter in self.sub_widget_list:
             letter.reset()
 
-    def set_scene_center(self):
+    def set_center(self):
         self.x = (self.scene.get_width() - self.get_width()) / 2
         self.y = (self.scene.get_height() - self.get_height()) / 2
         for i in range(self.count):
-            self.line[i].x = self.x + i * (self.size + 2)
-            self.line[i].y = self.y
+            self.sub_widget_list[i].x = self.x + i * (self.size + 2)
+            self.sub_widget_list[i].y = self.y
 
     def get_width(self) -> int:
         return (self.size + 2) * self.count - 2
 
     def get_height(self) -> int:
         return self.size
-
-    def draw(self, screen: pg.surface):
-        for letter in self.line:
-            letter.draw(screen)

@@ -3,7 +3,7 @@ import sys
 import pygame as pg
 
 from one_letter_scene import OneLetterScene
-from line_scene import  LineScene
+from line_scene import LineScene
 
 ONE_LETTER_SCENE = 1
 LINE_SCENE = 2
@@ -18,7 +18,7 @@ class MainWindow:
         self.clock = pg.time.Clock()
         self.scene = self.get_scene(scene_type)
         picture = pg.image.load("../image/20220422235656.jpg")
-        self.picture = pg.transform.scale(picture, (640, 480))
+        self.picture = pg.transform.scale(picture, (width, height))
 
     def main_loop(self):
         while True:
