@@ -12,9 +12,9 @@ LINE_SCENE = 2
 
 class MainWindow(Window):
 
-    def __init__(self, width: int = 640, height: int = 480, scene_type: int = ONE_LETTER_SCENE):
+    def __init__(self, width: int = 800, height: int = 600, scene_type: int = ONE_LETTER_SCENE):
         super().__init__(width, height, "Typing Game")
-        picture = pg.image.load("../image/20220422235656.jpg")
+        picture = pg.image.load("../image/keyboard.jpg")
         self.set_picture(pg.transform.scale(picture, (width, height)))
         self.set_scene(self.get_scene(scene_type))
 
