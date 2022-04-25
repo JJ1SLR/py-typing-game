@@ -25,6 +25,19 @@ class RandomLine(Widget):
         for letter in self.sub_widget_list:
             letter.reset()
 
+    def set_position(self, x: int, y: int):
+        self.x = x
+        self.y = y
+        for i in range(self.count):
+            self.sub_widget_list[i].x = self.x + i * (self.size + 2)
+            self.sub_widget_list[i].y = self.y
+
+    def set_size(self, size: int):
+        self.size = size
+        for i in range(self.count):
+            self.sub_widget_list[i].x = self.x + i * (size + 2)
+            self.sub_widget_list[i].set_size(size)
+
     def set_center(self):
         self.x = (self.scene.get_width() - self.get_width()) / 2
         self.y = (self.scene.get_height() - self.get_height()) / 2

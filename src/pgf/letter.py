@@ -43,6 +43,10 @@ class Letter(Widget):
         self.color = (255, 255, 255)
         self.txt_surface = self.font.render(self.letter, True, self.color)
 
+    def set_size(self, size: int):
+        self.font = pg.font.Font(None, size)
+        self.txt_surface = self.font.render(self.letter, True, self.color)
+
     def get_width(self) -> int:
         return self.txt_surface.get_rect().width
 
