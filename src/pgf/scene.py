@@ -26,6 +26,12 @@ class Scene:
     def on_key_up(self, event: pg.event.Event):
         pass
 
+    def on_mouse_down(self, event: pg.event.Event):
+        pass
+
+    def on_mouse_up(self, event: pg.event.Event):
+        pass
+
     def on_draw(self):
         self.window.screen.fill((0, 0, 0))
         if self.window.picture:

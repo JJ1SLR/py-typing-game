@@ -9,6 +9,7 @@ from src.pgf.scene import Scene
 
 from random_line import RandomLine
 from score_board import ScoreBoard
+from src.pgf.button import Button
 
 
 class LineScene(Scene):
@@ -19,6 +20,7 @@ class LineScene(Scene):
         self.line.set_center()
         self._new_line()
         self.scoreBoard = ScoreBoard(0, 0, parent=self.root_widget)
+        self.reset_button = Button(self.get_width() - 165, 5, 160, 120, 50, self.root_widget, "Reset")
         self.clickSnd = pg.mixer.Sound("../sound/click.wav")
         self.errorSnd = pg.mixer.Sound("../sound/error.wav")
         self.comboSnd = pg.mixer.Sound("../sound/combo.wav")

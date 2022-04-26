@@ -28,10 +28,14 @@ class Window:
             for event in pg.event.get():
                 if event.type == pg.QUIT:
                     sys.exit()
-                if event.type == pg.KEYDOWN:
+                elif event.type == pg.KEYDOWN:
                     self.scene.on_key_down(event)
-                if event.type == pg.KEYUP:
+                elif event.type == pg.KEYUP:
                     self.scene.on_key_up(event)
+                elif event.type == pg.MOUSEBUTTONDOWN:
+                    self.scene.on_mouse_down(event)
+                elif event.type == pg.MOUSEBUTTONUP:
+                    self.scene.on_mouse_up(event)
 
             self.clock.tick(self.fps)
             self.scene.on_draw()
