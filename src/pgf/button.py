@@ -20,11 +20,11 @@ class Button(Widget):
         self.text_x = x + (width - self.txt_surface.get_rect().width ) / 2
         self.text_y = y + (height - self.txt_surface.get_rect().height) / 2
 
-    def mouse_down(self, event: pg.event.Event, handled: bool) -> bool:
+    def mouse_down_impl(self, event: pg.event.Event, handled: bool) -> bool:
         print("Mouse Down! ", handled)
         return True
 
-    def mouse_up(self, event: pg.event.Event, handled: bool) -> bool:
+    def mouse_up_impl(self, event: pg.event.Event, handled: bool) -> bool:
         print("Mouse Up! ", handled)
         return True
 

@@ -43,10 +43,10 @@ class Widget(metaclass=abc.ABCMeta):
     def get_height(self) -> int:
         raise NotImplementedError()
 
-    def mouse_down(self, event: pg.event.Event, handled: bool) -> bool:
+    def mouse_down_impl(self, event: pg.event.Event, handled: bool) -> bool:
         return handled
 
-    def mouse_up(self, event: pg.event.Event, handled: bool) -> bool:
+    def mouse_up_impl(self, event: pg.event.Event, handled: bool) -> bool:
         return handled
 
     def on_mouse_down(self, event: pg.event.Event) -> bool:
@@ -54,7 +54,7 @@ class Widget(metaclass=abc.ABCMeta):
         for widget in self.sub_widget_list:
             handled |= widget.on_mouse_down(event)
         if self.is_in_widget(event.pos[0], event.pos[1]):
-            handled = self.mouse_down(event, handled)
+            handled = self.mouse_down_impl(event, handled)
         return handled
 
     def on_mouse_up(self, event: pg.event.Event) -> bool:
@@ -62,7 +62,7 @@ class Widget(metaclass=abc.ABCMeta):
         for widget in self.sub_widget_list:
             handled |= widget.on_mouse_up(event)
         if self.is_in_widget(event.pos[0], event.pos[1]):
-            handled = self.mouse_up(event, handled)
+            handled = self.mouse_up_impl(event, handled)
         return handled
 
     def is_in_widget(self, x: int, y: int):
