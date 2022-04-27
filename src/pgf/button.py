@@ -1,5 +1,7 @@
-import random
-import string
+from __future__ import annotations
+from typing import TYPE_CHECKING
+if TYPE_CHECKING:
+    from typing import Callable
 
 import pygame as pg
 
@@ -19,14 +21,24 @@ class Button(Widget):
         self.txt_surface = self.font.render(self.text, True, self.color)
         self.text_x = x + (width - self.txt_surface.get_rect().width ) / 2
         self.text_y = y + (height - self.txt_surface.get_rect().height) / 2
+        self.mouse_down_handler = None
+        self.mouse_up_handler = None
+
+    def set_mouse_down_handler(self, handler: Callable, user_data):
+        self.mouse_down_handler = (handler, user_data)
+
+    def set_mouse_up_handler(self, handler: Callable, user_data):
+        self.mouse_up_handler = (handler, user_data)
 
     def mouse_down_impl(self, event: pg.event.Event, handled: bool) -> bool:
-        print("Mouse Down! ", handled)
-        return True
+        if self.mouse_down_handler:
+            return self.mouse_down_handler[0](self, event, handled, self.mouse_down_handler[1])
+        return False
 
     def mouse_up_impl(self, event: pg.event.Event, handled: bool) -> bool:
-        print("Mouse Up! ", handled)
-        return True
+        if self.mouse_up_handler:
+            return self.mouse_up_handler[0](self, event, handled, self.mouse_up_handler[1])
+        return False
 
     def get_width(self) -> int:
         return self.width

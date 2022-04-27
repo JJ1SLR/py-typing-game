@@ -21,10 +21,16 @@ class LineScene(Scene):
         self._new_line()
         self.scoreBoard = ScoreBoard(0, 0, parent=self.root_widget)
         self.reset_button = Button(self.get_width() - 165, 5, 160, 120, 50, self.root_widget, "Reset")
+        self.reset_button.set_mouse_up_handler(LineScene.on_button_reset, self)
         self.clickSnd = pg.mixer.Sound("../sound/click.wav")
         self.errorSnd = pg.mixer.Sound("../sound/error.wav")
         self.comboSnd = pg.mixer.Sound("../sound/combo.wav")
         self.correct = False
+
+    @staticmethod
+    def on_button_reset(button: Button, event: pg.event.Event, handled: bool, scene):
+        print(scene, "Reset!")
+        return True
 
     def on_key_down(self, event: pg.event.Event):
         if pg.K_a <= event.key <= pg.K_z:
