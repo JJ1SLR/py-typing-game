@@ -43,6 +43,31 @@ class Widget(metaclass=abc.ABCMeta):
     def get_height(self) -> int:
         raise NotImplementedError()
 
+    def mouse_down(self, event: pg.event.Event, handled: bool) -> bool:
+        return handled
+
+    def mouse_up(self, event: pg.event.Event, handled: bool) -> bool:
+        return handled
+
+    def on_mouse_down(self, event: pg.event.Event) -> bool:
+        handled = False
+        for widget in self.sub_widget_list:
+            handled |= widget.on_mouse_down(event)
+        if self.is_in_widget(event.pos[0], event.pos[1]):
+            handled = self.mouse_down(event, handled)
+        return handled
+
+    def on_mouse_up(self, event: pg.event.Event) -> bool:
+        handled = False
+        for widget in self.sub_widget_list:
+            handled |= widget.on_mouse_up(event)
+        if self.is_in_widget(event.pos[0], event.pos[1]):
+            handled = self.mouse_up(event, handled)
+        return handled
+
+    def is_in_widget(self, x: int, y: int):
+        return self.x <= x <= self.x + self.get_width() and self.y <= y <= self.y + self.get_height()
+
     def draw(self, screen: pg.surface):
         if not self.sub_widget_list:
             raise NotImplementedError()

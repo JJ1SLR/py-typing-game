@@ -1,8 +1,9 @@
 from __future__ import annotations
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    import pygame as pg
     from src.pgf.window import Window
+
+import pygame as pg
 
 from src.pgf.root_widget import RootWidget
 
@@ -27,10 +28,10 @@ class Scene:
         pass
 
     def on_mouse_down(self, event: pg.event.Event):
-        pass
+        self.root_widget.on_mouse_down(event)
 
     def on_mouse_up(self, event: pg.event.Event):
-        pass
+        self.root_widget.on_mouse_up(event)
 
     def on_draw(self):
         self.window.screen.fill((0, 0, 0))
