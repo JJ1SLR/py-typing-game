@@ -24,20 +24,20 @@ class Button(Widget):
         self.mouse_down_handler = None
         self.mouse_up_handler = None
 
-    def set_mouse_down_handler(self, handler: Callable, user_data):
-        self.mouse_down_handler = (handler, user_data)
+    def set_mouse_down_handler(self, handler: Callable):
+        self.mouse_down_handler = handler
 
-    def set_mouse_up_handler(self, handler: Callable, user_data):
-        self.mouse_up_handler = (handler, user_data)
+    def set_mouse_up_handler(self, handler: Callable):
+        self.mouse_up_handler = handler
 
     def mouse_down_impl(self, event: pg.event.Event, handled: bool) -> bool:
         if self.mouse_down_handler:
-            return self.mouse_down_handler[0](self, event, handled, self.mouse_down_handler[1])
+            return self.mouse_down_handler(self, event, handled)
         return False
 
     def mouse_up_impl(self, event: pg.event.Event, handled: bool) -> bool:
         if self.mouse_up_handler:
-            return self.mouse_up_handler[0](self, event, handled, self.mouse_up_handler[1])
+            return self.mouse_up_handler(self, event, handled)
         return False
 
     def get_width(self) -> int:
