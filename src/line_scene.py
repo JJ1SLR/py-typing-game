@@ -28,8 +28,13 @@ class LineScene(Scene):
         self.correct = False
 
     def create_on_button_reset(self) -> Callable:
-        def on_button_reset(button: Button, event: pg.event.Event, handled: bool) -> bool:
-            print(self, "Reset!")
+        def on_button_reset(_button: Button, _event: pg.event.Event, _handled: bool) -> bool:
+            self.scoreBoard.reset()
+            self.root_widget.remove_widget(self.line)
+            self.root_widget.remove_widget(self.lineNext)
+            self.line = RandomLine(0, 0, parent=self.root_widget, size=90)
+            self.line.set_center()
+            self._new_line()
             return True
         return on_button_reset
 

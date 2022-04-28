@@ -19,7 +19,7 @@ class Button(Widget):
         self.text = text
         self.font = pg.font.Font(None, size)
         self.txt_surface = self.font.render(self.text, True, self.color)
-        self.text_x = x + (width - self.txt_surface.get_rect().width ) / 2
+        self.text_x = x + (width - self.txt_surface.get_rect().width) / 2
         self.text_y = y + (height - self.txt_surface.get_rect().height) / 2
         self.mouse_down_handler = None
         self.mouse_up_handler = None

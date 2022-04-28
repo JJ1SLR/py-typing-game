@@ -25,6 +25,11 @@ class ScoreBoard(Widget):
         self.scoreTotal.add()
         self.scoreCombo.reset()
 
+    def reset(self):
+        for widget in self.sub_widget_list:
+            if type(widget) is Score:
+                widget.reset()
+
     def get_combo(self) -> int:
         return self.scoreCombo.num
 
