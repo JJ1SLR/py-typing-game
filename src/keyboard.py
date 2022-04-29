@@ -9,13 +9,14 @@ from src.pgf.letter import Letter
 
 class KeyBoard(Widget):
 
-    def __init__(self, x: int = 0, y: int = 0, parent: Widget = None, size: int = 40):
+    def __init__(self, x: int = 0, y: int = 0, parent: Widget = None, size: int = 30):
         super().__init__(x, y, parent)
         self.x, self.y = x, y
         self.size = size
         self.sep = 2
         self.current = ""
         self.letter_dict = self.create_letters()
+        self.finger_dict = self.create_fingers()
 
     def get_height(self) -> int:
         return (self.size + self.sep) * 10 + self.sep * 10
@@ -27,6 +28,7 @@ class KeyBoard(Widget):
         self.reset()
         self.current = current
         self.letter_dict[self.current].set_color((255, 0, 255))
+        self.finger_dict[self.current].set_color((255, 0, 255))
 
     def reset(self):
         self.current = ""
@@ -98,3 +100,45 @@ class KeyBoard(Widget):
         letter_dict["M"] = widget
 
         return letter_dict
+
+    def create_fingers(self):
+        finger_dict = {}
+        widget = Letter(self.x + (self.size + self.sep) * 0, self.y + (self.size + self.sep) * 3, self, self.size, "5")
+        finger_dict["Q"] = widget
+        finger_dict["A"] = widget
+        finger_dict["Z"] = widget
+        widget = Letter(self.x + (self.size + self.sep) * 1, self.y + (self.size + self.sep) * 3, self, self.size, "4")
+        finger_dict["W"] = widget
+        finger_dict["S"] = widget
+        finger_dict["X"] = widget
+        widget = Letter(self.x + (self.size + self.sep) * 2, self.y + (self.size + self.sep) * 3, self, self.size, "3")
+        finger_dict["E"] = widget
+        finger_dict["D"] = widget
+        finger_dict["C"] = widget
+        widget = Letter(self.x + (self.size + self.sep) * 3, self.y + (self.size + self.sep) * 3, self, self.size, "2")
+        finger_dict["R"] = widget
+        finger_dict["F"] = widget
+        finger_dict["V"] = widget
+        widget = Letter(self.x + (self.size + self.sep) * 4, self.y + (self.size + self.sep) * 3, self, self.size, "2")
+        finger_dict["T"] = widget
+        finger_dict["G"] = widget
+        finger_dict["B"] = widget
+
+        widget = Letter(self.x + self.sep * 10  + (self.size + self.sep) * 5, self.y + (self.size + self.sep) * 3, self, self.size, "2")
+        finger_dict["Y"] = widget
+        finger_dict["H"] = widget
+        finger_dict["N"] = widget
+        widget = Letter(self.x + self.sep * 10  + (self.size + self.sep) * 6, self.y + (self.size + self.sep) * 3, self, self.size, "2")
+        finger_dict["U"] = widget
+        finger_dict["J"] = widget
+        finger_dict["M"] = widget
+        widget = Letter(self.x + self.sep * 10  + (self.size + self.sep) * 7, self.y + (self.size + self.sep) * 3, self, self.size, "3")
+        finger_dict["I"] = widget
+        finger_dict["K"] = widget
+        widget = Letter(self.x + self.sep * 10  + (self.size + self.sep) * 8, self.y + (self.size + self.sep) * 3, self, self.size, "4")
+        finger_dict["O"] = widget
+        finger_dict["L"] = widget
+        widget = Letter(self.x + self.sep * 10  + (self.size + self.sep) * 9, self.y + (self.size + self.sep) * 3, self, self.size, "5")
+        finger_dict["P"] = widget
+
+        return finger_dict
