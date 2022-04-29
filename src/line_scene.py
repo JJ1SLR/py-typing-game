@@ -29,6 +29,7 @@ class LineScene(Scene):
         self.errorSnd = pg.mixer.Sound("../sound/error.wav")
         self.comboSnd = pg.mixer.Sound("../sound/combo.wav")
         self.correct = False
+        self.key_press_cnt = 0
 
     def create_on_button_reset(self) -> Callable:
         def on_button_reset(_button: Button, _event: pg.event.Event, _handled: bool) -> bool:
@@ -43,30 +44,34 @@ class LineScene(Scene):
         return on_button_reset
 
     def on_key_down(self, event: pg.event.Event):
-        if pg.K_a <= event.key <= pg.K_z:
-            if self.line.judge(event.key):
-                self.correct = True
-                self.scoreBoard.add_ok()
-                self.clickSnd.play()
-            else:
-                self.correct = False
-                self.scoreBoard.add_ng()
-                self.errorSnd.play()
+        self.key_press_cnt += 1
+        if self.key_press_cnt == 1:
+            if pg.K_a <= event.key <= pg.K_z:
+                if self.line.judge(event.key):
+                    self.correct = True
+                    self.scoreBoard.add_ok()
+                    self.clickSnd.play()
+                else:
+                    self.correct = False
+                    self.scoreBoard.add_ng()
+                    self.errorSnd.play()
+                    self.keyboard.set_current(self.line.get_current_letter())
+            elif event.key == pg.K_SPACE:
+                self.keyboard.set_current(self.line.get_current_letter())
 
     def on_key_up(self, event: pg.event.Event):
-        if self.correct:
-            if self.line.is_complete():
-                self.comboSnd.play()
-                self.root_widget.remove_widget(self.line)
-                self.line = self.lineNext
-                self.line.set_size(90)
-                self.line.set_center()
-                self._new_line()
-            self.keyboard.reset()
-            self.correct = False
-        else:
-            if pg.K_a <= event.key <= pg.K_z or event.key == pg.K_SPACE:
-                self.keyboard.set_current(self.line.get_current_letter())
+        self.key_press_cnt -= 1
+        if self.key_press_cnt == 0:
+            if self.correct:
+                if self.line.is_complete():
+                    self.comboSnd.play()
+                    self.root_widget.remove_widget(self.line)
+                    self.line = self.lineNext
+                    self.line.set_size(90)
+                    self.line.set_center()
+                    self._new_line()
+                self.keyboard.reset()
+                self.correct = False
 
     def _new_line(self):
         self.lineNext = RandomLine(0, 0, parent=self.root_widget)
