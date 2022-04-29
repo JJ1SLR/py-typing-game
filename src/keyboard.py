@@ -26,7 +26,7 @@ class KeyBoard(Widget):
     def set_current(self, current: str):
         self.reset()
         self.current = current
-        self.letter_dict[self.current].set_color((0, 0, 255))
+        self.letter_dict[self.current].set_color((255, 0, 255))
 
     def reset(self):
         self.current = ""

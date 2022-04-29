@@ -23,7 +23,6 @@ class LineScene(Scene):
         self._new_line()
         self.scoreBoard = ScoreBoard(0, 0, parent=self.root_widget)
         self.keyboard = KeyBoard(350, 50, parent=self.root_widget)
-        self.keyboard.set_current(self.line.get_current_letter())
         self.reset_button = Button(self.get_width() - 165, 5, 160, 120, 50, self.root_widget, "Reset")
         self.reset_button.set_mouse_up_handler(self.create_on_button_reset())
         self.clickSnd = pg.mixer.Sound("../sound/click.wav")
@@ -62,8 +61,10 @@ class LineScene(Scene):
                 self.line.set_size(90)
                 self.line.set_center()
                 self._new_line()
-            self.keyboard.set_current(self.line.get_current_letter())
+            self.keyboard.reset()
             self.correct = False
+        else:
+            self.keyboard.set_current(self.line.get_current_letter())
 
     def _new_line(self):
         self.lineNext = RandomLine(0, 0, parent=self.root_widget)
