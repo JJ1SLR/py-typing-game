@@ -41,9 +41,13 @@ class RandomLine(Widget):
     def set_center(self):
         self.x = (self.scene.get_width() - self.get_width()) / 2
         self.y = (self.scene.get_height() - self.get_height()) / 2
+        # self.y += 80
         for i in range(self.count):
             self.sub_widget_list[i].x = self.x + i * (self.size + 2)
             self.sub_widget_list[i].y = self.y
+
+    def get_current_letter(self):
+        return self.sub_widget_list[self.current].letter
 
     def get_width(self) -> int:
         return (self.size + 2) * self.count - 2

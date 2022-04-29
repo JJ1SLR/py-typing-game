@@ -34,6 +34,10 @@ class Letter(Widget):
         self.color = (255, 0, 0)
         self.txt_surface = self.font.render(self.letter, True, self.color)
 
+    def set_color(self, color: tuple):
+        self.color = color
+        self.txt_surface = self.font.render(self.letter, True, self.color)
+
     def reset(self):
         self.color = (255, 255, 255)
         self.txt_surface = self.font.render(self.letter, True, self.color)
