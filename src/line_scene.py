@@ -38,6 +38,7 @@ class LineScene(Scene):
             self.line = RandomLine(0, 0, parent=self.root_widget, size=90)
             self.line.set_center()
             self._new_line()
+            self.keyboard.reset()
             return True
         return on_button_reset
 
