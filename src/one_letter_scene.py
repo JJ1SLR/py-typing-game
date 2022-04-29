@@ -11,6 +11,7 @@ from score_board import ScoreBoard
 
 from src.pgf.button import Button
 
+
 class OneLetterScene(Scene):
 
     def __init__(self, window: MainWindow):

@@ -124,21 +124,26 @@ class KeyBoard(Widget):
         finger_dict["G"] = widget
         finger_dict["B"] = widget
 
-        widget = Letter(self.x + self.sep * 10  + (self.size + self.sep) * 5, self.y + (self.size + self.sep) * 3, self, self.size, "2")
+        widget = Letter(self.x + self.sep * 10 + (self.size + self.sep) * 5, self.y + (self.size + self.sep) * 3,
+                        self, self.size, "2")
         finger_dict["Y"] = widget
         finger_dict["H"] = widget
         finger_dict["N"] = widget
-        widget = Letter(self.x + self.sep * 10  + (self.size + self.sep) * 6, self.y + (self.size + self.sep) * 3, self, self.size, "2")
+        widget = Letter(self.x + self.sep * 10 + (self.size + self.sep) * 6, self.y + (self.size + self.sep) * 3,
+                        self, self.size, "2")
         finger_dict["U"] = widget
         finger_dict["J"] = widget
         finger_dict["M"] = widget
-        widget = Letter(self.x + self.sep * 10  + (self.size + self.sep) * 7, self.y + (self.size + self.sep) * 3, self, self.size, "3")
+        widget = Letter(self.x + self.sep * 10 + (self.size + self.sep) * 7, self.y + (self.size + self.sep) * 3,
+                        self, self.size, "3")
         finger_dict["I"] = widget
         finger_dict["K"] = widget
-        widget = Letter(self.x + self.sep * 10  + (self.size + self.sep) * 8, self.y + (self.size + self.sep) * 3, self, self.size, "4")
+        widget = Letter(self.x + self.sep * 10 + (self.size + self.sep) * 8, self.y + (self.size + self.sep) * 3,
+                        self, self.size, "4")
         finger_dict["O"] = widget
         finger_dict["L"] = widget
-        widget = Letter(self.x + self.sep * 10  + (self.size + self.sep) * 9, self.y + (self.size + self.sep) * 3, self, self.size, "5")
+        widget = Letter(self.x + self.sep * 10 + (self.size + self.sep) * 9, self.y + (self.size + self.sep) * 3,
+                        self, self.size, "5")
         finger_dict["P"] = widget
 
         return finger_dict
