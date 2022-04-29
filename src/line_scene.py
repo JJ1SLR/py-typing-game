@@ -65,7 +65,8 @@ class LineScene(Scene):
             self.keyboard.reset()
             self.correct = False
         else:
-            self.keyboard.set_current(self.line.get_current_letter())
+            if pg.K_a <= event.key <= pg.K_z or event.key == pg.K_SPACE:
+                self.keyboard.set_current(self.line.get_current_letter())
 
     def _new_line(self):
         self.lineNext = RandomLine(0, 0, parent=self.root_widget)
