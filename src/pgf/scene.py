@@ -33,6 +33,9 @@ class Scene:
     def on_mouse_up(self, event: pg.event.Event):
         self.root_widget.on_mouse_up(event)
 
+    def on_tick(self, tick: int):
+        self.root_widget.tick(tick)
+
     def on_draw(self):
         self.window.screen.fill((0, 0, 0))
         if self.window.picture:

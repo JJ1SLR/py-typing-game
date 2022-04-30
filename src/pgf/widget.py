@@ -68,6 +68,10 @@ class Widget(metaclass=abc.ABCMeta):
     def is_in_widget(self, x: int, y: int):
         return self.x <= x <= self.x + self.get_width() and self.y <= y <= self.y + self.get_height()
 
+    def tick(self, tick: int):
+        for sub_widget in self.sub_widget_list:
+            sub_widget.tick(tick)
+
     def draw(self, screen: pg.surface):
         if not self.sub_widget_list:
             raise NotImplementedError()

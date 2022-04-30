@@ -16,6 +16,7 @@ class Window:
         self.fps = fps
         self.scene = None
         self.picture = None
+        self.tick = 0
 
     def set_scene(self, scene: Scene):
         self.scene = scene
@@ -36,7 +37,8 @@ class Window:
                     self.scene.on_mouse_down(event)
                 elif event.type == pg.MOUSEBUTTONUP:
                     self.scene.on_mouse_up(event)
-
+            self.tick += 1
             self.clock.tick(self.fps)
+            self.scene.on_tick(self.tick)
             self.scene.on_draw()
             pg.display.flip()
