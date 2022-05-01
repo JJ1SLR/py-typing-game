@@ -19,7 +19,7 @@ class OneLetterScene(Scene):
         self.letter = Letter(0, 0, parent=self.root_widget)
         self.letter.set_center()
         self.scoreBoard = ScoreBoard(0, 0, parent=self.root_widget)
-        self.reset_button = Button(self.get_width() - 165, 5, 160, 120, 50, self.root_widget, "Reset")
+        self.reset_button = Button(self.get_width() - 165, 5, 160, 80, 50, self.root_widget, "Reset")
         self.reset_button.set_mouse_up_handler(self.create_on_button_reset())
         self.clickSnd = pg.mixer.Sound("../sound/click.wav")
         self.errorSnd = pg.mixer.Sound("../sound/error.wav")

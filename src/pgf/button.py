@@ -10,7 +10,7 @@ from src.pgf.widget import Widget
 
 class Button(Widget):
 
-    def __init__(self, x: int = 0, y: int = 0, width: int = 160, height: int = 120, size: int = 50,
+    def __init__(self, x: int = 0, y: int = 0, width: int = 160, height: int = 80, size: int = 50,
                  parent: Widget = None, text: str = ''):
         super().__init__(x, y, parent)
         self.color = (255, 255, 255)
@@ -47,4 +47,5 @@ class Button(Widget):
         return self.height
 
     def draw(self, screen: pg.surface):
+        pg.draw.rect(screen, (120,0,0), pg.rect.Rect(self.x, self.y, self.width, self.height))
         screen.blit(self.txt_surface, [self.text_x, self.text_y])
